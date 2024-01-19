@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- Have the root route render a template with a checkerboard on it -->
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Checkerboard</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- Have the css in a separate stylesheet and link this to the template -->
+    <link rel='stylesheet' type='text/css' media='screen' href="{{ url_for('static',filename = 'css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static',filename = 'js/script.js') }}"></script>
+</head>
+<body>
+    <div class="header" style = "color: {{ color_one }}; background-color: {{ color_two }};">
+        <h1>*** Checkerboard ***</h1>
+    </div>
+    <!-- Have another route accept a single parameter
+    (i.e. "/<x>") and render a checkerboard with x many rows,
+    with alternating colors -->
+    <!-- NINJA BONUS: Have another route accept 2 parameters
+    (i.e. "/<x>/<y>") and render a checkerboard with x rows and y columns,
+    with alternating colors -->
+    <!-- NINJA BONUS: Have another route accept 3 parameters 
+    (i.e. "/<x>/<y>/<color1>") and render a checkerboard with x rows, y columns, 
+    and color color1 with alternating colors -->
+    <!-- SENSEI BONUS: Have another route accept 4 parameters 
+    (i.e. "/<x>/<y>/<color1>/<color2>") and render a checkerboard with x rows and
+    y columns, with alternating colors, color1 and color2 -->
+    </div>
+    {% for row in range(rows): %}
+        <div class="row">
+            {% for column in range(columns): %}
+                {% if row % 2 == 0 and column % 2 == 0 or row % 2 != 0 and column % 2 != 0: %}
+                <div class="column" style="background-color: {{color_one}};">
+                </div>
+                {% else: %}
+                <div class="column" style="background-color: {{color_two}};">
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+</body>
+</html>

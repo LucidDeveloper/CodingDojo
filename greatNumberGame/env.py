@@ -1,0 +1,1 @@
+KEY = 'This is my Secret Key for my great number game assignment'

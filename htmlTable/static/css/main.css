@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    width: fit-content;
+    margin: auto;
+}
+table{
+    background-color: aliceblue;
+    margin: 10px;
+}
+
+thead,th {
+    font-size: x-large;
+    color: rgb(17, 114, 199);
+    background-color: bisque;
+}
+
+tr,td {
+    font-size: large;
+    font-weight: 600;
+    text-align: center;
+}

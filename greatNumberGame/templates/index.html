@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Great Number Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <!-- local CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="{{ url_for('static', filename = 'css/style.css') }}"
+    />
+
+    <!-- local JavaScript -->
+    <script src="{{ url_for('static', filename = 'js/script.js') }}"></script>
+  </head>
+  <body>
+    <!-- In the root route, save a random number between 1 and 100 and
+        display a form for the user to guess the number -->
+    <div class="container p-2 mx-auto" style="width: fit-content">
+      <div
+        class="row text-center bg-dark border border-4 border-bottom-0 border-warning rounded-top"
+      >
+        <h1 class="text-warning">Welcome to the Great Number Game!</h1>
+        <p class="text-warning">I am thinking of a number between 1 and 100</p>
+      </div>
+      <!-- Create a route that determines whether the number submitted is too high,
+            too low, or correct. Show this status on the HTML page. -->
+      <!-- NINJA BONUS: Display the results as shown in the wireframe 
+            (i.e. with appropriate colors and positioning) -->
+      <!-- NINJA BONUS: Allow the user to keep guessing until they get it correct -->
+      <!-- SENSEI BONUS: Only allow the user to guess up to 5 times. 
+            If they don't guess it on their 5th attempt, display a "You Lose" message and 
+            allow them to try again. -->
+      {% if attempts < 5 %} {% if guess %} {% if guess > random_int: %}
+      <div
+        class="row text-center bg-danger border border-4 border-top-0 border-bottom-0 border-warning"
+      >
+        <div class="col">
+          <h1 class="text-warning">Too High!</h1>
+        </div>
+      </div>
+      <div
+        class="row bg-dark border border-4 border-top-0 border-warning rounded-bottom"
+      >
+        <form action="/process_guess" method="post">
+          <div class="col text-center my-2">
+            <label class="text-warning text-center" for="guess">
+              <strong>Take a guess!</strong></label
+            >
+          </div>
+          <div class="col text-center my-2">
+            <input
+              class="text-secondary text-center border border-3 border-warning rounded"
+              type="number"
+              name="guess"
+              value=""
+              placeholder="Guess!"
+              min="1"
+              max="100"
+            />
+          </div>
+          <div class="col text-center my-2">
+            <button
+              class="btn btn-dark text-warning border border-2 border-warning rounded"
+              type="submit"
+            >
+              Guess
+            </button>
+          </div>
+        </form>
+      </div>
+      {% endif %} {% if guess < random_int: %}
+      <div
+        class="row text-center bg-danger border border-4 border-top-0 border-bottom-0 border-warning"
+      >
+        <h1 class="text-warning">Too Low!</h1>
+      </div>
+      <div
+        class="row bg-dark border border-4 border-top-0 border-warning rounded-bottom"
+      >
+        <form action="/process_guess" method="post">
+          <div class="col text-center my-2">
+            <label class="text-warning text-center" for="guess">
+              <strong>Take a guess!</strong></label
+            >
+          </div>
+          <div class="col text-center my-2">
+            <input
+              class="text-secondary text-center border border-3 border-warning rounded"
+              type="number"
+              name="guess"
+              value=""
+              placeholder="Guess!"
+              min="1"
+              max="100"
+            />
+          </div>
+          <div class="col text-center my-2">
+            <button
+              class="btn btn-danger text-warning border border-2 border-warning rounded"
+              type="submit"
+            >
+              Guess
+            </button>
+          </div>
+        </form>
+      </div>
+      {% endif %} {% if guess == random_int: %}
+      <div
+        class="row bg-success border border-4 border-top-0 border-bottom-0 border-warning"
+      >
+        <div class="row-md text-center">
+          <h2 class="text-warning">
+            You Guessed It! My Number Was {{ random_int }}!
+          </h2>
+        </div>
+      </div>
+      <!-- NINJA BONUS: Let the user know how many attempts they took before 
+                    guessing the correct number -->
+      <div
+        class="row bg-success border border-4 border-top-0 border-bottom-0 border-warning"
+      >
+        <div class="col-md text-center">
+          <h1 class="text-warning">
+            You Guessed My Number In Only {{ attempts }} Attempts!
+          </h1>
+        </div>
+      </div>
+      <!-- SENSEI BONUS: If they win, allow the user to submit their name. 
+                    Have a link to a leaderboard page that shows winners' names and 
+                    how many attempts they took to guess correctly. -->
+      <div
+        class="row text-center bg-dark border border-4 border-top-0 border-warning rounded-bottom"
+      >
+        <form action="/process_leaderboard" method="post">
+          <div class="col my-4">
+            <label class="text-warning" for="name"
+              ><h2>Would You Like to Join The Leaderboard?!</h2></label
+            >
+            <input
+              class="text-secondary text-center my-2 form-control border border-warning rounded"
+              type="text"
+              name="name"
+              placeholder="Enter Your Name"
+              value=""
+            />
+          </div>
+          <div class="row-md my-4 text-center">
+            <button
+              class="btn btn-danger text-warning border border-2 border-warning rounded"
+              type="submit"
+            >
+              Add to Leaderboard
+            </button>
+          </div>
+        </form>
+        <div class="row my-2 text-center">
+          <form action="/try_again">
+            <button
+              class="btn btn-danger text-warning border border-2 border-warning rounded"
+              type="submit"
+            >
+              Try Again
+            </button>
+          </form>
+        </div>
+      </div>
+      {% endif %} {% else: %}
+      <div
+        class="row bg-dark border border-4 border-top-0 border-warning rounded-bottom"
+      >
+        <form action="/process_guess" method="post">
+          <div class="col-md text-center my-2">
+            <label class="text-warning text-center" for="guess">
+              <strong>Take a guess!</strong></label
+            >
+          </div>
+          <div class="col-md text-center my-2">
+            <input
+              class="text-secondary text-center border border-3 border-warning rounded"
+              type="number"
+              name="guess"
+              value=""
+              placeholder="Guess!"
+              min="1"
+              max="100"
+            />
+          </div>
+          <div class="col-md text-center my-2">
+            <button
+              class="btn btn-danger text-warning border border-2 border-warning rounded"
+              type="submit"
+            >
+              Guess
+            </button>
+          </div>
+        </form>
+      </div>
+      {% endif %} {% else %}
+      <!-- SENSEI BONUS: Only allow the user to guess up to 5 times. 
+            If they don't guess it on their 5th attempt, display a "You Lose" message and 
+            allow them to try again. -->
+      <div
+        class="row text-center bg-dark border border-4 border-top-0 border-warning rounded-bottom"
+      >
+        <div class="row-md bg-danger border-warning">
+          <h1 class="text-warning">You Lose!</h1>
+          <h2 class="text-warning">The Number Was {{ random_int }}!</h2>
+        </div>
+        <div class="row-md bg-dark">
+          <h1 class="text-warning">
+            You Exceded The Number of Allowed Attempts!
+          </h1>
+        </div>
+        <div class="row-md bg-dark my-2">
+          <form action="/try_again">
+            <button
+              class="btn btn-danger text-warning border border-2 border-warning rounded"
+              type="submit"
+            >
+              Try Again
+            </button>
+          </form>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- local JavaScript -->
+    <script src="{{ url_for('static', filename = 'js/script.js') }}"></script>
+
+    <!-- Bootstrap JavaScript -->
+    <!-- Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

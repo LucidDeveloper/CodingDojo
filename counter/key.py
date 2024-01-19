@@ -1,0 +1,1 @@
+KEY = 'This is my secret key for my Counter Assignment.'

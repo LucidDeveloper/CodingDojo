@@ -1,0 +1,39 @@
+<!-- Internal Styling -->
+<!-- Just for this assignment, use an internal stylesheet or inline CSS (review here). -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground</title>
+    <style>
+        body {
+            display: block;
+            text-align: center;
+        }
+        div {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+        .div {
+            background-color: {{color}};
+            border-radius: 10%;
+            border: 3px solid black;
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <div>
+        {% for x in range(0,number)%}
+            <div class="div"></div>
+        {% endfor %}
+    </div>
+</body>
+</html>
