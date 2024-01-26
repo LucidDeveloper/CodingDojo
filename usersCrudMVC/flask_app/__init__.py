@@ -11,7 +11,7 @@
 # 3. Insert this code
 # 4. Remove code from server.py
 from flask import Flask # import Flask to create instance of Flask to be used for app
-from env import KEY # import secret Key to be used with Flask app
+from flask_app.config.env import KEY # import secret Key to be used with Flask app
 
 app = Flask(__name__)
 app.secret_key = KEY
