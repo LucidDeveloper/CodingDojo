@@ -5,10 +5,10 @@
 Gianni M. Javier
 
 **Origin**
-01/013/2022
+01/13/2022
 
 ## Summary:
-**Created to Submit Coding Dojo Assignments from GitHub Repo.**
+**Created for the  submission of CodingDojo Assignments directly from GitHub.**
 
 **Assignments From the Web Fundamentals and Python Full Stack Curriculum.**
 
